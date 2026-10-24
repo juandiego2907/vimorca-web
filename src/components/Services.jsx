@@ -1,62 +1,99 @@
-const services = [
-  {
-    number: "01",
-    title: "Construcción residencial",
-    description:
-      "Construcción integral de viviendas y proyectos residenciales, desde la planificación hasta la entrega.",
-  },
-  {
-    number: "02",
-    title: "Construcción comercial",
-    description:
-      "Espacios comerciales y corporativos diseñados para responder a las necesidades de cada proyecto.",
-  },
-  {
-    number: "03",
-    title: "Remodelación",
-    description:
-      "Transformamos espacios existentes mediante soluciones funcionales, modernas y de alta calidad.",
-  },
-  {
-    number: "04",
-    title: "Obras civiles",
-    description:
-      "Ejecución de obras civiles y proyectos de infraestructura con planificación y supervisión profesional.",
-  },
-];
+import { useState } from "react";
+import { serviceAreas } from "../data/content";
+import { ArrowRight } from "./Icons";
 
 function Services() {
+  const [activeId, setActiveId] = useState(serviceAreas[0].id);
+  const area = serviceAreas.find((item) => item.id === activeId);
+
+  const onKeyDown = (event) => {
+    const index = serviceAreas.findIndex((item) => item.id === activeId);
+    const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+    if (!step) return;
+    const next = serviceAreas[(index + step + serviceAreas.length) % serviceAreas.length];
+    setActiveId(next.id);
+    document.getElementById(`tab-${next.id}`)?.focus();
+  };
+
   return (
     <section className="services section" id="servicios">
-      <div className="section-header">
-        <div>
-          <p className="section-label">NUESTROS SERVICIOS</p>
-          <h2>
-            Soluciones para
-            <br />
-            <span>cada proyecto.</span>
-          </h2>
+      <div className="container">
+        <div className="section-head" data-reveal>
+          <div>
+            <p className="eyebrow">Servicios</p>
+            <h2>
+              Tres áreas, <span className="accent">un solo responsable.</span>
+            </h2>
+          </div>
+          <p>
+            Del estudio técnico a la ejecución con equipo propio. Elija el área y vea qué
+            problemas resolvemos y cómo lo hacemos.
+          </p>
         </div>
 
-        <p className="section-intro">
-          Desde pequeñas remodelaciones hasta proyectos de gran escala,
-          acompañamos cada etapa del proceso constructivo.
-        </p>
-      </div>
+        <div className="tabs" role="tablist" aria-label="Áreas de servicio" onKeyDown={onKeyDown}>
+          {serviceAreas.map((item) => (
+            <button
+              key={item.id}
+              id={`tab-${item.id}`}
+              type="button"
+              role="tab"
+              aria-selected={item.id === activeId}
+              aria-controls="service-panel"
+              tabIndex={item.id === activeId ? 0 : -1}
+              className={`tab${item.id === "fugas" ? " tab-urgent" : ""}`}
+              onClick={() => setActiveId(item.id)}
+            >
+              {item.id === "fugas" && <span className="tab-dot" />}
+              {item.label}
+            </button>
+          ))}
+        </div>
 
-      <div className="services-grid">
-        {services.map((service) => (
-          <article className="service-card" key={service.number}>
-            <span className="service-number">{service.number}</span>
+        <div
+          className="service-panel"
+          id="service-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${area.id}`}
+          key={area.id}
+        >
+          <div className="service-body">
+            <h3>{area.title}</h3>
 
             <div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
+              <p className="service-label">¿Le pasa esto?</p>
+              <ul className="problem-list">
+                {area.problems.map((problem) => (
+                  <li key={problem}>{problem}</li>
+                ))}
+              </ul>
             </div>
 
-            <span className="service-arrow">↗</span>
-          </article>
-        ))}
+            <div>
+              <p className="service-label">Cómo lo resolvemos</p>
+              <p className="service-solution">{area.solution}</p>
+            </div>
+
+            <div className="service-items">
+              {area.items.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+
+            <a
+              href={area.id === "fugas" ? "#fugas" : "#contacto"}
+              className={`btn ${area.id === "fugas" ? "btn-urgent" : "btn-outline"}`}
+              style={{ justifySelf: "start" }}
+            >
+              {area.id === "fugas" ? "Ver cómo detectamos fugas" : "Cotizar este servicio"}
+              <ArrowRight />
+            </a>
+          </div>
+
+          <div className="service-media">
+            <img src={area.image} alt={area.title} loading="lazy" />
+          </div>
+        </div>
       </div>
     </section>
   );

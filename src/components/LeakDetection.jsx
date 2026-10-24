@@ -1,103 +1,110 @@
+import { useState } from "react";
 import { siteConfig, telLink, whatsappLink } from "../config/siteConfig";
-
-const symptoms = [
-  "El recibo de agua subió sin explicación",
-  "Manchas de humedad en paredes o pisos",
-  "El tanque o la cisterna nunca se llena",
-  "Se escucha agua correr con todo cerrado",
-];
-
-const steps = [
-  {
-    number: "01",
-    title: "Nos escribe",
-    description: "Cuéntenos los síntomas y la ubicación por WhatsApp o teléfono.",
-  },
-  {
-    number: "02",
-    title: "Detectamos",
-    description:
-      "Rastreamos la tubería con equipo electroacústico y ubicamos el punto exacto de la fuga.",
-  },
-  {
-    number: "03",
-    title: "Marcamos",
-    description:
-      "Se rompe solo donde está la fuga, sin demoler pisos ni paredes de más.",
-  },
-  {
-    number: "04",
-    title: "Reparamos",
-    description:
-      "Entregamos el diagnóstico y, si lo desea, nuestro equipo hace la reparación.",
-  },
-];
+import { leakSteps, leakSymptoms } from "../data/content";
+import { Check, Phone, WhatsApp } from "./Icons";
 
 function LeakDetection() {
+  const [selected, setSelected] = useState([]);
   const phone = siteConfig.contact.mobiles[0];
+
+  const toggle = (symptom) =>
+    setSelected((current) =>
+      current.includes(symptom)
+        ? current.filter((item) => item !== symptom)
+        : [...current, symptom]
+    );
+
+  const message = [
+    "Hola VIMORCA, vengo de la web y necesito detectar una fuga de agua.",
+    selected.length > 0 && `Síntomas: ${selected.join("; ")}.`,
+    "Ubicación:",
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   return (
     <section className="leaks section" id="fugas">
-      <div className="leaks-grid">
-        <div className="leaks-intro">
-          <p className="section-label">DETECCIÓN DE FUGAS DE AGUA</p>
+      <div className="container">
+        <div className="leaks-grid">
+          <div data-reveal>
+            <p className="eyebrow">Detección de fugas de agua</p>
+            <h2>
+              Encontramos la fuga <span className="accent">sin romper de más.</span>
+            </h2>
+            <p className="leaks-lead">
+              Diagnóstico preciso de pérdidas de agua en viviendas, condominios, comercios y
+              redes de distribución, sin destruir infraestructura innecesariamente.
+            </p>
 
-          <h2>
-            Encontramos la fuga
-            <br />
-            <span>sin romper de más.</span>
-          </h2>
+            <div className="symptom-picker">
+              <p>¿Qué está notando? Marque lo que aplique:</p>
+              <div className="symptoms">
+                {leakSymptoms.map((symptom) => (
+                  <button
+                    key={symptom}
+                    type="button"
+                    className="symptom"
+                    aria-pressed={selected.includes(symptom)}
+                    onClick={() => toggle(symptom)}
+                  >
+                    <span className="symptom-check">
+                      <Check />
+                    </span>
+                    {symptom}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-          <p className="leaks-lead">
-            Diagnóstico preciso de pérdidas de agua en viviendas, condominios,
-            comercios y redes de distribución, sin destruir infraestructura
-            innecesariamente.
-          </p>
-
-          <ul className="leaks-symptoms">
-            {symptoms.map((symptom) => (
-              <li key={symptom}>{symptom}</li>
-            ))}
-          </ul>
-
-          <div className="leaks-actions">
-            <a
-              href={whatsappLink(
-                "Hola VIMORCA, vengo de la web y necesito detectar una fuga de agua en:",
-                siteConfig.contact.whatsappFugas
-              )}
-              className="button button-urgent"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Tengo una fuga: escribir por WhatsApp
-            </a>
-
-            <a href={telLink(phone)} className="button button-outline">
-              Llamar al {phone}
-            </a>
+            <div className="leaks-actions">
+              <a
+                href={whatsappLink(message, siteConfig.contact.whatsappFugas)}
+                className="btn btn-urgent"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsApp />
+                {selected.length > 0
+                  ? `Enviar ${selected.length} síntoma${selected.length > 1 ? "s" : ""} por WhatsApp`
+                  : "Escribir por WhatsApp"}
+              </a>
+              <a href={telLink(phone)} className="btn btn-outline">
+                <Phone />
+                Llamar al {phone}
+              </a>
+            </div>
+            <p className="leaks-hint">
+              Los síntomas marcados se agregan al mensaje para que llegue con el diagnóstico
+              adelantado.
+            </p>
           </div>
+
+          <figure className="leaks-card" data-reveal style={{ "--delay": "0.15s" }}>
+            <img
+              src="/fugas-vimorca.jpg"
+              alt="VIMORCA, análisis de pérdidas de agua con detector electroacústico"
+              width="750"
+              height="709"
+              loading="lazy"
+            />
+            <figcaption className="leaks-card-body">
+              <strong>Detección electroacústica</strong>
+              <span>
+                Escuchamos la tubería para ubicar el punto exacto de la pérdida antes de
+                romper.
+              </span>
+            </figcaption>
+          </figure>
         </div>
 
-        <figure className="leaks-image">
-          <img
-            src="/fugas-vimorca.jpg"
-            alt="VIMORCA, análisis de pérdidas de agua con detector electroacústico"
-            width="750"
-            height="709"
-            loading="lazy"
-          />
-        </figure>
-      </div>
-
-      <div className="leaks-steps">
-        {steps.map((step) => (
-          <article className="leaks-step" key={step.number}>
-            <span>{step.number}</span>
-            <h3>{step.title}</h3>
-            <p>{step.description}</p>
-          </article>
-        ))}
+        <ol className="steps" data-reveal>
+          {leakSteps.map((step) => (
+            <li className="step" key={step.title} style={{ listStyle: "none" }}>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

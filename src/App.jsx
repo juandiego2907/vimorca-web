@@ -2,15 +2,19 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import LeakDetection from "./components/LeakDetection";
+import Fleet from "./components/Fleet";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Process from "./components/Process";
-import CTA from "./components/CTA";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import { useReveal } from "./hooks/useReveal";
 import "./index.css";
 
 function App() {
+  useReveal();
+
   return (
     <>
       <Navbar />
@@ -19,10 +23,11 @@ function App() {
         <Hero />
         <Services />
         <LeakDetection />
+        <Fleet />
         <Projects />
         <About />
         <Process />
-        <CTA />
+        <Contact />
       </main>
 
       <Footer />
