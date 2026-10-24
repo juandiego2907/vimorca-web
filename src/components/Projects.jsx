@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { projects } from "../data/content";
+import { centerInScroller } from "../utils/centerInScroller";
 
 const categories = ["Todas", ...new Set(projects.map((project) => project.category))];
 
@@ -24,7 +25,10 @@ function Projects() {
               type="button"
               className="filter"
               aria-pressed={filter === category}
-              onClick={() => setFilter(category)}
+              onClick={(event) => {
+                setFilter(category);
+                centerInScroller(event.currentTarget);
+              }}
             >
               {category}
             </button>

@@ -1162,9 +1162,16 @@ h4 {
   grid-auto-flow: column;
   grid-auto-columns: clamp(280px, 32vw, 420px);
   gap: 1.25rem;
+  /* Solo desplazamiento horizontal: sin esto el carrusel también puede
+     moverse en vertical y "atrapa" el gesto del dedo en el celular. */
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  padding-block: 0.75rem;
   padding-left: max(var(--gutter), calc((100vw - 1240px) / 2 + var(--gutter)));
   padding-right: var(--gutter);
   scroll-padding-left: max(var(--gutter), calc((100vw - 1240px) / 2 + var(--gutter)));
@@ -1182,8 +1189,15 @@ h4 {
   transition: transform 0.6s var(--ease);
 }
 
-.fleet-card:hover {
-  transform: scale(1.015);
+@media (hover: hover) and (pointer: fine) {
+  .fleet-card:hover {
+    transform: scale(1.015);
+  }
+
+  .fleet-card:hover img {
+    filter: grayscale(0) contrast(1.02);
+    transform: scale(1.05);
+  }
 }
 
 .fleet-card figure {
@@ -1199,11 +1213,6 @@ h4 {
   transition:
     filter 0.8s ease,
     transform 1s var(--ease);
-}
-
-.fleet-card:hover img {
-  filter: grayscale(0) contrast(1.02);
-  transform: scale(1.05);
 }
 
 .fleet-card-body {
@@ -1967,10 +1976,18 @@ textarea.input {
 
   .segmented,
   .filters {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
+  }
+
+  .segmented::-webkit-scrollbar,
+  .filters::-webkit-scrollbar {
+    display: none;
   }
 
   .tab,

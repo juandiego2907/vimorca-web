@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { serviceAreas } from "../data/content";
+import { centerInScroller } from "../utils/centerInScroller";
 
 function Services() {
   const [activeId, setActiveId] = useState(serviceAreas[0].id);
@@ -11,7 +12,9 @@ function Services() {
     if (!step) return;
     const next = serviceAreas[(index + step + serviceAreas.length) % serviceAreas.length];
     setActiveId(next.id);
-    document.getElementById(`tab-${next.id}`)?.focus();
+    const tab = document.getElementById(`tab-${next.id}`);
+    tab?.focus({ preventScroll: true });
+    centerInScroller(tab);
   };
 
   return (
@@ -42,7 +45,10 @@ function Services() {
               aria-controls="service-panel"
               tabIndex={item.id === activeId ? 0 : -1}
               className="tab"
-              onClick={() => setActiveId(item.id)}
+              onClick={(event) => {
+                setActiveId(item.id);
+                centerInScroller(event.currentTarget);
+              }}
             >
               {item.label}
             </button>

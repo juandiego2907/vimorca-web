@@ -9,10 +9,10 @@ function Fleet() {
   const update = () => {
     const el = trackRef.current;
     if (!el) return;
-    setEdges({
-      start: el.scrollLeft <= 4,
-      end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4,
-    });
+    const start = el.scrollLeft <= 4;
+    const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+    // Solo re-renderiza al llegar o salir de un extremo, no en cada píxel de scroll.
+    setEdges((prev) => (prev.start === start && prev.end === end ? prev : { start, end }));
   };
 
   useEffect(() => {
