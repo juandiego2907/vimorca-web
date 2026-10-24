@@ -6,18 +6,16 @@ const projects = [
   image: "/vimorca-projects.jpg",
 },
   {
-    category: "COMERCIAL",
-    title: "Colegio",
-    location: "Mérida, Venezuela",
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85",
+    category: "OBRA HIDRÁULICA",
+    title: "Recalce y muro ciclópeo",
+    location: "Santa Catalina, El Chama · Mcpio. Libertador, Mérida",
+    image: "/obra-muro-ciclopeo.jpg",
   },
   {
-    category: "REMODELACIÓN",
-    title: "Proyecto",
-    location: "Mérida, Venezuela",
-    image:
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85",
+    category: "SEGURIDAD VIAL",
+    title: "Barandas de seguridad",
+    location: "Viaductos Miranda y Sucre · Mcpio. Libertador, Mérida",
+    image: "/obra-barandas-viaducto.jpg",
   },
 ];
 
@@ -46,7 +44,7 @@ function Projects() {
             className={`project-card project-card-${index + 1}`}
             key={project.title}
           >
-            <img src={project.image} alt={project.title} />
+            <img src={project.image} alt={project.title} loading="lazy" />
 
             <div className="project-overlay">
               <div>

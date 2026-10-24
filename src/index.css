@@ -10,6 +10,9 @@
   --vimorca-blue: #11153f;
   --vimorca-green: #258a46;
   --vimorca-green-dark: #1f733b;
+  --vimorca-amber: #e9a23b;
+  --vimorca-amber-dark: #d48d24;
+  --whatsapp: #25d366;
   --white: #ffffff;
   --light-gray: #f4f5f3;
   --gray: #777777;
@@ -420,6 +423,207 @@ a {
 }
 
 /* =========================
+   LEAK DETECTION
+========================= */
+
+.leaks {
+  background: var(--white);
+  border-top: 6px solid var(--vimorca-amber);
+}
+
+.leaks-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.leaks-intro h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+}
+
+.leaks-intro h2 span {
+  color: var(--vimorca-green);
+}
+
+.leaks-lead {
+  max-width: 520px;
+  margin-top: 1.75rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.leaks-symptoms {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.leaks-symptoms li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.leaks-symptoms li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--vimorca-amber);
+  transform: rotate(45deg);
+}
+
+.leaks-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.button-urgent {
+  background: var(--vimorca-amber);
+  color: var(--vimorca-blue);
+  font-weight: 700;
+}
+
+.button-urgent:hover {
+  background: var(--vimorca-amber-dark);
+}
+
+.button-outline {
+  border: 1px solid var(--vimorca-blue);
+  color: var(--vimorca-blue);
+}
+
+.button-outline:hover {
+  background: var(--vimorca-blue);
+  color: var(--white);
+}
+
+.leaks-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.leaks-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+}
+
+.leaks-step {
+  padding: 2rem 2rem 0 0;
+}
+
+.leaks-step + .leaks-step {
+  padding-left: 2rem;
+  border-left: 1px solid var(--border);
+}
+
+.leaks-step > span {
+  font-size: 0.7rem;
+  color: var(--vimorca-amber-dark);
+  font-weight: 700;
+}
+
+.leaks-step h3 {
+  margin: 1rem 0 0.6rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.leaks-step p {
+  color: var(--gray);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .leaks-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .leaks-symptoms {
+    grid-template-columns: 1fr;
+  }
+
+  .leaks-actions {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .leaks-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .leaks-step,
+  .leaks-step + .leaks-step {
+    padding: 1.5rem 0;
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-float {
+  position: fixed;
+  z-index: 50;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.2rem 0.85rem 1rem;
+  border-radius: 999px;
+  background: var(--whatsapp);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+}
+
+.whatsapp-float svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.9rem;
+  }
+
+  .whatsapp-float span {
+    display: none;
+  }
+}
+
+/* =========================
    PROJECTS
 ========================= */
 
@@ -752,7 +956,7 @@ a {
   overflow: hidden;
   color: var(--white);
 
-  background-image: url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2200&q=85");
+  background-image: url("/obra-muro-construccion.jpg");
   background-size: cover;
   background-position: center;
 }

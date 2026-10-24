@@ -9,6 +9,7 @@ function Navbar() {
 
       <nav className="nav-links">
         <a href="#servicios">Servicios</a>
+        <a href="#fugas">Detección de fugas</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#nosotros">Nosotros</a>
       </nav>

@@ -11,7 +11,7 @@ function Hero() {
         </p>
 
         <h1>
-         Su inversion en el presente,
+          Su inversión en el presente
           <br />
           tiene su futuro <span>asegurado.</span>
         </h1>

@@ -1,3 +1,5 @@
+import { whatsappLink } from "../config/siteConfig";
+
 function CTA() {
   return (
     <section className="cta" id="contacto">
@@ -17,7 +19,14 @@ function CTA() {
           en realidad.
         </p>
 
-        <a href="https://wa.me/584120000000" className="cta-button">
+        <a
+          href={whatsappLink(
+            "Hola VIMORCA, vengo de la web y quiero solicitar una cotización para un proyecto."
+          )}
+          className="cta-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Solicitar una cotización <span>↗</span>
         </a>
       </div>

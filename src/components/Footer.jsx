@@ -1,6 +1,13 @@
-import { siteConfig } from "../config/siteConfig";
+import { siteConfig, telLink } from "../config/siteConfig";
 
 function Footer() {
+  const { contact, social } = siteConfig;
+  const socialLinks = [
+    ["Instagram", social.instagram],
+    ["Facebook", social.facebook],
+    ["LinkedIn", social.linkedin],
+  ].filter(([, url]) => url);
+
   return (
     <footer className="footer">
       <div className="footer-top">
@@ -18,29 +25,39 @@ function Footer() {
           <span>Explorar</span>
           <a href="#">Inicio</a>
           <a href="#servicios">Servicios</a>
+          <a href="#fugas">Detección de fugas</a>
           <a href="#proyectos">Proyectos</a>
           <a href="#nosotros">Nosotros</a>
         </div>
 
         <div className="footer-column">
           <span>Contacto</span>
-          <a href={`tel:${siteConfig.contact.phone}`}>
-            {siteConfig.contact.phone}
-          </a>
-          <a href={`mailto:${siteConfig.contact.email}`}>
-            {siteConfig.contact.email}
-          </a>
-          <span>{siteConfig.contact.address}</span>
+          {[...contact.mobiles, ...contact.phones].map((phone) => (
+            <a href={telLink(phone)} key={phone}>
+              {phone}
+            </a>
+          ))}
+          {contact.email && (
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          )}
+          <span>{contact.address}</span>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <span>© 2026 {siteConfig.companyName}</span>
+        <span>
+          © 2026 {siteConfig.companyName} · RIF {siteConfig.rif}
+        </span>
 
-        <div>
-          <a href={siteConfig.social.instagram}>Instagram</a>
-          <a href={siteConfig.social.linkedin}>LinkedIn</a>
-        </div>
+        {socialLinks.length > 0 && (
+          <div>
+            {socialLinks.map(([name, url]) => (
+              <a href={url} key={name} target="_blank" rel="noopener noreferrer">
+                {name}
+              </a>
+            ))}
+          </div>
+        )}
 
         <span>Todos los derechos reservados.</span>
       </div>
