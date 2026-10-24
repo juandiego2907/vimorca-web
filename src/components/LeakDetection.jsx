@@ -59,7 +59,7 @@ function LeakDetection() {
             <div className="leaks-actions">
               <a
                 href={whatsappLink(message, siteConfig.contact.whatsappFugas)}
-                className="btn btn-urgent"
+                className="btn btn-light"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -68,7 +68,7 @@ function LeakDetection() {
                   ? `Enviar ${selected.length} síntoma${selected.length > 1 ? "s" : ""} por WhatsApp`
                   : "Escribir por WhatsApp"}
               </a>
-              <a href={telLink(phone)} className="btn btn-outline">
+              <a href={telLink(phone)} className="btn btn-ghost">
                 <Phone />
                 Llamar al {phone}
               </a>

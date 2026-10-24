@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { serviceAreas } from "../data/content";
-import { ArrowRight } from "./Icons";
 
 function Services() {
   const [activeId, setActiveId] = useState(serviceAreas[0].id);
@@ -19,19 +18,20 @@ function Services() {
     <section className="services section" id="servicios">
       <div className="container">
         <div className="section-head" data-reveal>
-          <div>
-            <p className="eyebrow">Servicios</p>
-            <h2>
-              Tres áreas, <span className="accent">un solo responsable.</span>
-            </h2>
-          </div>
+          <p className="eyebrow">Servicios</p>
+          <h2>Tres disciplinas. Un solo responsable.</h2>
           <p>
-            Del estudio técnico a la ejecución con equipo propio. Elija el área y vea qué
-            problemas resolvemos y cómo lo hacemos.
+            Del estudio técnico a la ejecución con equipo propio. Elija un área y vea qué
+            resolvemos y cómo lo hacemos.
           </p>
         </div>
 
-        <div className="tabs" role="tablist" aria-label="Áreas de servicio" onKeyDown={onKeyDown}>
+        <div
+          className="segmented"
+          role="tablist"
+          aria-label="Áreas de servicio"
+          onKeyDown={onKeyDown}
+        >
           {serviceAreas.map((item) => (
             <button
               key={item.id}
@@ -41,10 +41,9 @@ function Services() {
               aria-selected={item.id === activeId}
               aria-controls="service-panel"
               tabIndex={item.id === activeId ? 0 : -1}
-              className={`tab${item.id === "fugas" ? " tab-urgent" : ""}`}
+              className="tab"
               onClick={() => setActiveId(item.id)}
             >
-              {item.id === "fugas" && <span className="tab-dot" />}
               {item.label}
             </button>
           ))}
@@ -80,13 +79,8 @@ function Services() {
               ))}
             </div>
 
-            <a
-              href={area.id === "fugas" ? "#fugas" : "#contacto"}
-              className={`btn ${area.id === "fugas" ? "btn-urgent" : "btn-outline"}`}
-              style={{ justifySelf: "start" }}
-            >
-              {area.id === "fugas" ? "Ver cómo detectamos fugas" : "Cotizar este servicio"}
-              <ArrowRight />
+            <a href={area.id === "fugas" ? "#fugas" : "#contacto"} className="link-more">
+              {area.id === "fugas" ? "Cómo detectamos fugas" : "Cotizar este servicio"}
             </a>
           </div>
 

@@ -1,6 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Statement from "./components/Statement";
 import Services from "./components/Services";
+import Showcase from "./components/Showcase";
 import LeakDetection from "./components/LeakDetection";
 import Fleet from "./components/Fleet";
 import Projects from "./components/Projects";
@@ -21,7 +23,9 @@ function App() {
 
       <main>
         <Hero />
+        <Statement />
         <Services />
+        <Showcase />
         <LeakDetection />
         <Fleet />
         <Projects />

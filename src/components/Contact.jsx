@@ -43,7 +43,7 @@ function Contact() {
       <div className="container contact-grid">
         <div data-reveal>
           <p className="eyebrow">Contacto</p>
-          <h2>Construya con nosotros.</h2>
+          <h2>Construyamos algo que perdure.</h2>
           <p className="contact-lead">
             Cuéntenos qué necesita y le responderemos por WhatsApp con los próximos pasos.
             También puede visitarnos en nuestra oficina.
@@ -156,7 +156,7 @@ function Contact() {
             </p>
           )}
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-light">
             Enviar por WhatsApp <ArrowRight />
           </button>
           <p className="form-note">

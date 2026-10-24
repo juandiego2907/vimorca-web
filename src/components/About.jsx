@@ -8,21 +8,32 @@ function About() {
   return (
     <section className="about section" id="nosotros">
       <div className="container">
+        <div className="section-head" data-reveal>
+          <p className="eyebrow">Nosotros</p>
+          <h2>
+            Talento humano. <span className="accent">Precisión técnica.</span>
+          </h2>
+        </div>
+
+        <figure className="about-photo" data-reveal>
+          <img
+            src="/equipo-sala-tecnica.jpg"
+            alt="Sala técnica de VIMORCA revisando un proyecto en la oficina de Alto Chama"
+            loading="lazy"
+          />
+          <figcaption>La sala técnica que respalda cada obra.</figcaption>
+        </figure>
+
         <div className="about-grid">
           <div data-reveal>
-            <p className="eyebrow">Nosotros</p>
-            <h2>
-              Talento humano, maquinaria propia <span className="accent">y precisión técnica.</span>
-            </h2>
             <p className="about-lead">
-              VIMORCA es una organización técnica orientada a la eficiencia: la respuesta
-              arquitectónica e ingenieril para que cada proyecto se ejecute con precisión en
-              calidad, tiempo y costo.
+              Una organización técnica orientada a la eficiencia: cada proyecto se ejecuta
+              con precisión en calidad, tiempo y costo.
             </p>
             <p className="about-text">
-              Nuestra misión es ofrecer soluciones integrales en obras hidráulicas, civiles,
-              mecánicas, eléctricas y estructurales con los más altos estándares de calidad,
-              seguridad y sostenibilidad ambiental.
+              Ofrecemos soluciones integrales en obras hidráulicas, civiles, mecánicas,
+              eléctricas y estructurales con los más altos estándares de calidad, seguridad y
+              sostenibilidad ambiental.
             </p>
 
             <div className="leaders">
@@ -35,28 +46,17 @@ function About() {
             </div>
           </div>
 
-          <div data-reveal style={{ "--delay": "0.15s" }}>
-            <figure className="about-photo">
-              <img
-                src="/equipo-sala-tecnica.jpg"
-                alt="Sala técnica de VIMORCA revisando un proyecto en la oficina de Alto Chama"
-                loading="lazy"
-              />
-              <figcaption>Sala técnica · C.C. Alto Chama, Mérida</figcaption>
-            </figure>
-
-            <div className="disciplines">
-              <p className="service-label">Ecosistema multidisciplinario</p>
-              {disciplines.map((item) => (
-                <div className="discipline" key={item.name}>
-                  <span>{item.name}</span>
-                  <b>{String(item.count).padStart(2, "0")}</b>
-                  <span className="discipline-bar">
-                    <i style={{ "--w": `${(item.count / maxCount) * 100}%` }} />
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="disciplines" data-reveal style={{ "--delay": "0.15s" }}>
+            <p className="service-label">Ecosistema multidisciplinario</p>
+            {disciplines.map((item) => (
+              <div className="discipline" key={item.name}>
+                <span>{item.name}</span>
+                <b>{String(item.count).padStart(2, "0")}</b>
+                <span className="discipline-bar">
+                  <i style={{ "--w": `${(item.count / maxCount) * 100}%` }} />
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 

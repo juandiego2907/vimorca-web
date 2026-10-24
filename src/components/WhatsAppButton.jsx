@@ -15,7 +15,6 @@ function WhatsAppButton() {
         aria-label="Escribir a VIMORCA por WhatsApp"
       >
         <WhatsApp />
-        <span>WhatsApp</span>
       </a>
 
       <nav className="mobile-bar" aria-label="Contacto rápido">

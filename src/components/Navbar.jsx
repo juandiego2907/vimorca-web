@@ -62,11 +62,8 @@ function Navbar() {
         </nav>
 
         <div className="nav-actions">
-          <a href="#fugas" className="btn btn-urgent">
-            ¿Fuga de agua?
-          </a>
-          <a href="#contacto" className="btn btn-primary">
-            Cotizar proyecto
+          <a href="#contacto" className="btn btn-light">
+            Cotizar
           </a>
         </div>
 
@@ -88,19 +85,16 @@ function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="#contacto" className="btn btn-primary" onClick={close}>
+          <a href="#contacto" className="btn btn-light" onClick={close}>
             Cotizar proyecto
           </a>
           <a
-            href={whatsappLink(
-              "Hola VIMORCA, vengo de la web y necesito detectar una fuga de agua.",
-              siteConfig.contact.whatsappFugas
-            )}
-            className="btn btn-urgent"
+            href={whatsappLink("Hola VIMORCA, vengo de la web y quiero más información.")}
+            className="btn btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
           >
-            ¿Fuga de agua? Escríbanos
+            Escribir por WhatsApp
           </a>
         </nav>
       </div>

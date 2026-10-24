@@ -9,14 +9,14 @@
       name="description"
       content="Obras civiles e hidráulicas, arquitectura, movimiento de tierra con maquinaria propia y detección de fugas de agua en Mérida, Venezuela. Solicite su cotización."
     />
-    <meta name="theme-color" content="#0f1433" />
+    <meta name="theme-color" content="#000000" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
     />
-    <link rel="preload" as="image" href="/obra-muro-ciclopeo.jpg" />
+    <link rel="preload" as="image" href="/hero-obra-poster.jpg" />
     <!-- Cambiar a la URL del dominio propio cuando esté listo -->
     <link rel="canonical" href="https://vimorca-web-three.vercel.app/" />
 
@@ -57,6 +57,12 @@
     </script>
   </head>
   <body>
+    <script>
+      // La intro del hero arranca ocultando la navegación desde el primer pintado.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches && scrollY < 40) {
+        document.documentElement.classList.add("intro-active");
+      }
+    </script>
     <div id="root">
       <h1>VIMORCA: ingeniería, arquitectura y detección de fugas en Mérida, Venezuela</h1>
       <p>Obras civiles e hidráulicas, proyectos urbanísticos, movimiento de tierra con maquinaria propia y detección de fugas de agua. Av. Andrés Bello, C.C. Alto Chama, Torre Norte, Piso 4, Oficina 4-02, Mérida. Teléfonos: 0274-2668137 · 0414-7170044.</p>

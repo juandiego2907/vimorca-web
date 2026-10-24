@@ -8,19 +8,6 @@ export const navLinks = [
   { href: "#nosotros", label: "Nosotros" },
 ];
 
-export const capabilities = [
-  "Ingeniería civil",
-  "Obras hidráulicas",
-  "Estructuras",
-  "Geología y geotecnia",
-  "Proyectos urbanísticos",
-  "Arquitectura",
-  "Movimiento de tierra",
-  "Proyectos mecánicos y eléctricos",
-  "Detección de fugas",
-  "Mantenimiento general",
-];
-
 export const serviceAreas = [
   {
     id: "ingenieria",
